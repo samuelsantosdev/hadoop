@@ -36,7 +36,7 @@ $ python run.py
 +--------+--------+--------+-------+------------------+
 ```
 
-# Examplo MrJob
+# Sample MrJob
 
 ### Running MrJob Local
 ```
