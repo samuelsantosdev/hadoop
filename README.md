@@ -34,4 +34,4 @@ $ python main.py
 +--------+--------+--------+-------+------------------+
 ```
 
-# Examplo MrJob
+# Sample MrJob
