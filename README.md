@@ -11,9 +11,11 @@ $ tar xvf spark-3.0.0-preview-bin-hadoop2.7.tgz
 ```
 
 ### Set the path of Spark in .env
+```
 SPARK_PATH=<path_to_projetct>/spark/spark-3.0.0-preview-bin-hadoop2.7/
 SPARK_MEM=1gb
 APP_NAME=Spark Hadoop Teste
+```
 
 ### Run 
 ```
