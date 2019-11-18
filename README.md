@@ -15,9 +15,11 @@ SPARK_PATH=<path_to_projetct>/spark/spark-3.0.0-preview-bin-hadoop2.7/
 SPARK_MEM=1gb
 APP_NAME=Spark Hadoop Teste
 
-### Run the test
+### Run 
 ```
-$ python main.py
+$ cd pyspark
+$ pip install -r requirements
+$ python run.py
 +--------+--------+--------+-------+------------------+                         
 |    Name|Year2000|Year2010|   Diff|          Increase|
 +--------+--------+--------+-------+------------------+
@@ -35,3 +37,40 @@ $ python main.py
 ```
 
 # Examplo MrJob
+
+### Running MrJob Local
+```
+$ cd mrjob
+$ pip install -r requirements
+$ python count_words.py data/input_data.txt > data/output.txt
+```
+
+### Running MrJob in AWS EMR
+```
+$ aws emr create-default-roles 
+```
+set config .mrjob.conf with AWS credentials
+
+```
+$ cd mrjob
+$ pip install -r requirements
+$ python count_words.py data/input_data.txt -r emr
+
+Using s3://mrjob-bb3fb02bec0467d2/tmp/ as our temp dir on S3
+Creating temp directory /tmp/count_words.marbeik.20191118.185622.785260
+writing master bootstrap script to /tmp/count_words.marbeik.20191118.185622.785260/b.sh
+uploading working dir files to s3://mrjob-bb3fb02bec0467d2/tmp/count_words.marbeik.20191118.185622.785260/files/wd...
+Copying other local files to s3://mrjob-bb3fb02bec0467d2/tmp/count_words.marbeik.20191118.185622.785260/files/
+Created new cluster j-1ZY5Z37LMZHWF
+Added EMR tags to cluster j-1ZY5Z37LMZHWF: __mrjob_label=count_words, __mrjob_owner=marbeik, __mrjob_version=0.6.12
+Waiting for Step 1 of 1 (s-1TFAJLTSJSWXK) to complete...
+  PENDING (cluster is STARTING)
+  PENDING (cluster is STARTING)
+  PENDING (cluster is BOOTSTRAPPING: Running bootstrap actions)
+  PENDING (cluster is BOOTSTRAPPING: Running bootstrap actions)
+  PENDING (cluster is BOOTSTRAPPING: Running bootstrap actions)
+  PENDING (cluster is RUNNING: Running step)
+  master node is ec2-52-42-249-126.us-west-2.compute.amazonaws.com
+  RUNNING for 0:00:33 ...
+
+```
