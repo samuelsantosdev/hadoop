@@ -1,0 +1,3 @@
+findspark==1.3.0
+py4j==0.10.7
+pyspark==2.3.2
