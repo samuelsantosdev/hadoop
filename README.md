@@ -1,4 +1,4 @@
-# Examplo PySpark
+# Sample PySpark
 In this simple test, we read a CSV file with most used Names in Brazil,
 and show a result with top names in 10 years
 
