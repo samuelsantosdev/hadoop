@@ -4,6 +4,7 @@
 
 ### Code ###
 .vscode/*
+/.vscode
 !.vscode/settings.json
 !.vscode/tasks.json
 !.vscode/launch.json
@@ -143,4 +144,5 @@ dmypy.json
 .pyre/
 
 # End of https://www.gitignore.io/api/code,django
-*/spark-3.0.0-preview-bin-hadoop2.7
+*/spark/spark-3.0.0-preview-bin-hadoop2.7
+/spark/spark-3.0.0-preview-bin-hadoop2.7
