@@ -144,5 +144,5 @@ dmypy.json
 .pyre/
 
 # End of https://www.gitignore.io/api/code,django
-*/spark/spark-3.0.0-preview-bin-hadoop2.7
-/spark/spark-3.0.0-preview-bin-hadoop2.7
+*/spark/spark*
+/spark/spark*
