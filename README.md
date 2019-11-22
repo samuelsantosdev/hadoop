@@ -1,4 +1,4 @@
-# Docker + Kafka + Spark 2.4.4 + PySpark 2.4.0 + Kafka Stream 0.8
+# Docker + Kafka + Spark 2.4.4 + PySpark 2.4.0 + Spark Stream 0.8
 
 ![Kafka Stream](https://raw.githubusercontent.com/samuelsantosdev/hadoop/master/kafka_sample.gif)
 
