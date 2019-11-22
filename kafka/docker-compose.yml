@@ -22,8 +22,8 @@ services:
     extra_hosts:
       - "moby:127.0.0.1"
 
-  stream_tweets_1:
-    image: "twitter_stream:latest"
+  stream_tweets:
+    build: "./"
     entrypoint: /entrypoint.sh
     command: ["python", "stream_tweets.py"]
     network_mode: host
@@ -31,42 +31,35 @@ services:
       WORDS: 'love'
       PYTHONUNBUFFERED: 1
     env_file: app/.env
-    deploy:
-      replicas: 1
-      resources:
-        limits:
-          cpus: "0.2"
-          memory: 128M
-      update_config:
-        parallelism: 1
-        delay: 10s
-      restart_policy:
-        condition: on-failure
     volumes:
-      - ./data:/app/data:rw
+      - ./app:/app:rw
 
-  producer_1:
-    image: "twitter_stream:latest"
+  producer:
+    build: "./"
     entrypoint: /entrypoint.sh
     environment:
       WORDS: 'love'
       PYTHONUNBUFFERED: 1
     command: ["python", "producer.py"]
     depends_on: 
-      - stream_tweets_1
+      - stream_tweets
       - kafka
     network_mode: host
     env_file: app/.env
-    deploy:
-      replicas: 1
-      resources:
-        limits:
-          cpus: "0.2"
-          memory: 128M
-      update_config:
-        parallelism: 1
-        delay: 10s
-      restart_policy:
-        condition: on-failure
     volumes:
-      - ./data:/app/data:rw
+      - ./app:/app:rw
+  
+  consumer:
+    build: "./"
+    entrypoint: /entrypoint.sh
+    environment:
+      WORDS: 'love'
+      PYTHONUNBUFFERED: 1
+    command: bash -c "chmod +x -R /spark && python consumer.py"
+    depends_on: 
+      - producer
+    network_mode: host
+    env_file: app/.env
+    volumes:
+      - ./app:/app:rw
+      - ../spark:/spark:rw

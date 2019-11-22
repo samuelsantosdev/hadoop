@@ -1,3 +1,34 @@
+# Docker + Kafka + Spark 2.4.4 + PySpark 2.4.0 + Kafka Stream 0.8
+
+![Kafka Stream](https://raw.githubusercontent.com/samuelsantosdev/hadoop/master/kafka_sample.gif)
+
+
+* Docker 18>
+* docker-compose 1.24>
+
+```
+$ cd <git_project_path>/spark
+$ wget http://ftp.unicamp.br/pub/apache/spark/spark-2.4.4/spark-2.4.4-bin-hadoop2.7.tgz
+$ tar -xvf spark-2.4.4-bin-hadoop2.7.tgz
+```
+
+Start environment
+
+Change the values from keys 'WORD' in docker-compose.yml, this word will be searched in twitter, by stream twitter.
+```
+cd <git_project_path>/kafka/
+docker-compose up -d
+```
+Log from the producer process:
+```
+docker container logs -f kafka_producer_1
+```
+
+Log from the consumer with stream process:
+```
+docker container logs -f kafka_consumer_1
+```
+
 # Sample PySpark
 In this simple test, we read a CSV file with most used Names in Brazil,
 and show a result with top names in 10 years
@@ -7,7 +38,9 @@ and show a result with top names in 10 years
 ```
 $ cd <project_path>/spark
 $ wget https://www-us.apache.org/dist/spark/spark-3.0.0-preview/spark-3.0.0-preview-bin-hadoop2.7.tgz 
-$ tar xvf spark-3.0.0-preview-bin-hadoop2.7.tgz
+$ wget http://ftp.unicamp.br/pub/apache/spark/spark-2.4.4/spark-2.4.4-bin-hadoop2.7.tgz
+$ tar -xvf spark-3.0.0-preview-bin-hadoop2.7.tgz
+$ tar -xvf spark-2.4.4-bin-hadoop2.7.tgz
 ```
 
 ### Set the path of Spark in .env
